@@ -723,7 +723,7 @@ install_bbr()
             echo 'net.core.default_qdisc = fq' >> /etc/sysctl.conf
             echo 'net.ipv4.tcp_congestion_control = bbr' >> /etc/sysctl.conf
             sysctl -p
-            if ! wget -O update-kernel.sh https://github.com/kirin10000/update-kernel/raw/master/update-kernel.sh; then
+            if ! wget -O update-kernel.sh https://github.com/Btu2023V/update-kernel/raw/master/update-kernel.sh; then
                 red    "获取内核升级脚本失败"
                 yellow "按回车键继续或者按ctrl+c终止"
                 read -s
@@ -977,7 +977,7 @@ install_nginx()
     if ! make; then
         red    "nginx编译失败！"
         yellow "请尝试更换系统，建议使用Ubuntu最新版系统"
-        green  "欢迎进行Bug report(https://github.com/kirin10000/Xray-TLS-Web-setup-script/issues)，感谢您的支持"
+        green  "欢迎进行Bug report(https://github.com/Btu2023V/Xray-TLS-Web-setup-script/issues)，感谢您的支持"
         exit 1
     fi
     if [ $update == 1 ]; then
@@ -1392,7 +1392,7 @@ get_web()
     if [ $2 -eq 3 ]; then
         rm -rf ${nginx_prefix}/html/$1
         mkdir ${nginx_prefix}/html/$1
-        if ! wget -O ${nginx_prefix}/html/$1/Website-Template.zip https://github.com/kirin10000/Xray-TLS-Web-setup-script/raw/main/Website-Template.zip; then
+        if ! wget -O ${nginx_prefix}/html/$1/Website-Template.zip https://github.com/Btu2023V/Xray-TLS-Web-setup-script/raw/main/Website-Template.zip; then
             red    "获取网站模板失败"
             yellow "按回车键继续或者按ctrl+c终止"
             read -s
@@ -1574,7 +1574,7 @@ install_update_xray_tls_web()
                 apt update
                 if ! apt -y --no-install-recommends install $1; then
                     yellow "依赖安装失败！！"
-                    green  "欢迎进行Bug report(https://github.com/kirin10000/Xray-TLS-Web-setup-script/issues)，感谢您的支持"
+                    green  "欢迎进行Bug report(https://github.com/Btu2023V/Xray-TLS-Web-setup-script/issues)，感谢您的支持"
                     yellow "按回车键继续或者ctrl+c退出"
                     read -s
                 fi
@@ -1591,7 +1591,7 @@ install_update_xray_tls_web()
             fi
             if ! $redhat_install_command $1; then
                 yellow "依赖安装失败！！"
-                green  "欢迎进行Bug report(https://github.com/kirin10000/Xray-TLS-Web-setup-script/issues)，感谢您的支持"
+                green  "欢迎进行Bug report(https://github.com/Btu2023V/Xray-TLS-Web-setup-script/issues)，感谢您的支持"
                 yellow "按回车键继续或者ctrl+c退出"
                 read -s
             fi
@@ -1810,7 +1810,7 @@ start_menu()
     echo
     tyblue "            Nginx ：           ${nginx_status}"
     echo
-    tyblue " 官网：https://github.com/kirin10000/Xray-TLS-Web-setup-script"
+    tyblue " 官网：https://github.com/Btu2023V/Xray-TLS-Web-setup-script"
     echo
     tyblue "----------------------------------注意事项----------------------------------"
     yellow " 此脚本需要一个解析到本服务器的域名!!!!"
@@ -1882,7 +1882,7 @@ start_menu()
             exit 1
         fi
         rm -rf "$0"
-        wget -O "$0" "https://github.com/kirin10000/Xray-TLS-Web-setup-script/raw/main/Xray-TLS+Web-setup.sh"
+        wget -O "$0" "https://github.com/Btu2023V/Xray-TLS-Web-setup-script/raw/main/Xray-TLS+Web-setup.sh"
         chmod +x "$0"
         "$0" --update
     elif [ $choice -eq 3 ]; then
