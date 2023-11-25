@@ -95,7 +95,7 @@ using_swap_now=0
 update=0
 # 在 install_update_xray_reality_web 函数中
 in_install_update_xray_reality_web=0
-script_url="https://github.com/bluejerry2021/Xray-script/raw/main/Xray-REALITY+Web.sh"
+script_url="https://github.com/Btu2023V/Xray-script/raw/main/Xray-REALITY+Web.sh"
 
 #功能性函数：
 #定义几个颜色
@@ -1239,11 +1239,11 @@ install_bbr()
                     fi
                     local temp_kernel_sh_url
                     if [ $choice -eq 1 ]; then
-                        temp_kernel_sh_url="https://github.com/bluejerry2021/update-kernel/raw/master/update-kernel-stable.sh"
+                        temp_kernel_sh_url="https://github.com/Btu2023V/update-kernel/raw/master/update-kernel-stable.sh"
                     elif [ $choice -eq 4 ]; then
-                        temp_kernel_sh_url="https://github.com/bluejerry2021/update-kernel/raw/master/update-kernel.sh"
+                        temp_kernel_sh_url="https://github.com/Btu2023V/update-kernel/raw/master/update-kernel.sh"
                     else
-                        temp_kernel_sh_url="https://github.com/bluejerry2021/xanmod-install/raw/main/xanmod-install.sh"
+                        temp_kernel_sh_url="https://github.com/Btu2023V/xanmod-install/raw/main/xanmod-install.sh"
                     fi
                     if ! curl -Lo kernel.sh "$temp_kernel_sh_url"; then
                         red    "获取内核安装脚本失败"
