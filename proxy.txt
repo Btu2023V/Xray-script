@@ -256,6 +256,9 @@
 .myoctocat.com
 .nnr.moe
 .nodeseek.com
+.npm.community
+.npmjs.com
+.npmjs.org
 .ntdm.tv
 .ntdm9.com
 .one.one.one
