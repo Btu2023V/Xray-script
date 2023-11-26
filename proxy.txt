@@ -254,6 +254,7 @@
 .lowendtalk.com
 .mikanani.me
 .myoctocat.com
+.mypikpak.me
 .nnr.moe
 .nodeseek.com
 .npm.community
@@ -266,6 +267,7 @@
 .pacloudflare.com
 .pages.dev
 .pikpak.com
+.pikpak.me
 .pikpakdrive.com
 .pscdn.co
 .quiz.directory
