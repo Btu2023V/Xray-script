@@ -143,6 +143,7 @@
 .awstrust.com
 .bitsearch.to
 .botstop.com
+.branch.io
 .bulianglin.com
 .byspotify.com
 .cableav.xyz
@@ -254,7 +255,7 @@
 .lowendtalk.com
 .mikanani.me
 .myoctocat.com
-.mypikpak.me
+.mypikpak.net
 .nnr.moe
 .nodeseek.com
 .npm.community
@@ -271,6 +272,7 @@
 .pikpakdrive.com
 .pscdn.co
 .quiz.directory
+.recaptcha.net
 .repo.new
 .sc-cdn.net
 .scdn.co
