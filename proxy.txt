@@ -1,3 +1,5 @@
+cdn-spotify-experiments.conductrics.com
+spotify.com.edgesuite.net
 .1337x.gd
 .1337x.is
 .1337x.st
