@@ -252,6 +252,7 @@ DOMAIN-SUFFIX,images-amazon.com
 DOMAIN-SUFFIX,ip2world.com
 DOMAIN-SUFFIX,isbgpsafeyet.com
 DOMAIN-SUFFIX,iyf.tv
+DOMAIN-SUFFIX,kfc.com
 DOMAIN-SUFFIX,limetorrents.com
 DOMAIN-SUFFIX,link.com
 DOMAIN-SUFFIX,lowendtalk.com
