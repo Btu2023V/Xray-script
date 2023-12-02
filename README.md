@@ -17,8 +17,6 @@ dnf --setopt install_weak_deps=0 -y install curl ca-certificates || yum --setopt
 ```bash
 curl -Lo Xray-REALITY+Web.sh https://github.com/Btu2023V/Xray-script/raw/main/Xray-REALITY+Web.sh
 ```
-### 链接  
-https://raw.githubusercontent.com/Btu2023V/Xray-script/main/proxy.txt
 ### 4. 执行脚本
 ```bash
 bash Xray-REALITY+Web.sh
