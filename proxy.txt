@@ -124,6 +124,8 @@ argotunnel.com
 atom.io
 awetv.com
 aws
+aws.a2z.com
+aws.dev
 awsautopilot.com
 awsautoscaling.com
 awsbraket.com
@@ -212,6 +214,7 @@ cloudflarestatus.com
 cloudflarestorage.com
 cloudflarestream.com
 cloudflaretest.com
+cloudflarewarp.com
 cloudfront.com
 cloudfront.net
 comments.app
@@ -266,6 +269,7 @@ npmjs.com
 npmjs.org
 ntdm.tv
 ntdm9.com
+omtrdc.net
 one.one.one
 opensource.guide
 pacloudflare.com
