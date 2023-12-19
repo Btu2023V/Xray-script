@@ -318,12 +318,12 @@ x1377x.se
 x1377x.ws
 yts.mx
 zencdn.net
-full:cdn-spotify-experiments.conductrics.com
 full:spotify.com.edgesuite.net
+full:cdn-spotify-experiments.conductrics.com
 regexp:.+\.awsdns-[0-9][0-9]\.co\.uk$
 regexp:.+\.awsdns-[0-9][0-9]\.com$
+reasgexp:.+\.awsdns-[0-9][0-9]\.org$
 regexp:.+\.awsdns-[0-9][0-9]\.net$
-regexp:.+\.awsdns-[0-9][0-9]\.org$
 regexp:github-production-release-asset-[0-9a-zA-Z]{6}\.s3\.amazonaws\.com
 1377x.to
 ibb.co
