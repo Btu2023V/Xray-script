@@ -3513,7 +3513,7 @@ install_update_xray_reality_web()
             red "acme.sh 安装失败！"
             report_bug
         fi
-        "$HOME/.acme.sh/acme.sh" --register-account -ak ec-256 --server letsencrypt -m "andrewch567@gmail.com"
+        "$HOME/.acme.sh/acme.sh" --register-account -ak ec-256 --server zerossl -m "my@example.com"
 
         gen_reality_key
     fi
@@ -3888,7 +3888,7 @@ reinit_domain()
         red "acme.sh 安装失败！"
         report_bug
     fi
-    "$HOME/.acme.sh/acme.sh" --register-account -ak ec-256 --server letsencrypt -m "andrewch567@gmail.com"
+    "$HOME/.acme.sh/acme.sh" --register-account -ak ec-256 --server zerossl -m "my@example.com"
     "$HOME/.acme.sh/acme.sh --upgrade --auto-upgrade"
     disable_all_cloudreves
     systemctl stop nginx
