@@ -65,7 +65,7 @@ unset pretend_redirect_index_list
 unset protocol_1
 # grpc： 0 禁用；1 VLESS；2 VMess
 unset protocol_2
-# WebSocket：0 禁用；1 VLESS；2 VMess
+# httpupgrade：0 禁用；1 VLESS；2 VMess
 unset protocol_3
 
 # TCP(REALITY) 的 uuid
@@ -80,9 +80,9 @@ unset xid_2
 # grpc的serviceName
 unset serviceName
 
-# ws 的 uuid
+# httpupgrade 的 uuid
 unset xid_3
-# ws的path
+# httpupgrade 的path
 unset path
 
 
@@ -474,7 +474,7 @@ get_config_info()
     [ -z "$reality_private_key" ] && clear_config && return
     reality_public_key="$(grep '"reality_public_key"' "$xray_config" | cut -d : -f 2 | cut -d \" -f 2)"
     [ -z "$reality_public_key" ] && clear_config && return
-    if grep -q '"network"[ '$'\t]*:[ '$'\t]*"ws"' "$xray_config"; then
+    if grep -q '"network"[ '$'\t]*:[ '$'\t]*"httpupgrade"' "$xray_config"; then
         if [[ "$(grep -oE '"protocol"[ '$'\t'']*:[ '$'\t'']*"(vmess|vless)"' "$xray_config" | tail -n 1)" =~ '"vmess"' ]]; then
             protocol_3=2
         else
@@ -1695,16 +1695,16 @@ readProtocolConfig()
     tyblue "---------------------请选择传输协议---------------------"
     tyblue " 1. TCP(REALITY)"
     tyblue " 2. gRPC"
-    tyblue " 3. WebSocket"
+    tyblue " 3. httpupgrade"
     tyblue " 4. TCP(REALITY) + gRPC"
-    tyblue " 5. TCP(REALITY) + WebSocket"
-    tyblue " 6. gRPC + WebSocket"
-    tyblue " 7. TCP(REALITY) + gRPC + WebSocket"
+    tyblue " 5. TCP(REALITY) + httpupgrade"
+    tyblue " 6. gRPC + httpupgrade"
+    tyblue " 7. TCP(REALITY) + gRPC + httpupgrade"
     yellow " 0. 无 (仅提供Web服务)"
     echo
     blue   " 注："
     blue   "   1. 如不使用CDN，请选择TCP(REALITY)"
-    blue   "   2. gRPC和WebSocket支持通过CDN，关于两者的区别，详见：https://github.com/kirin10000/Xray-script#关于grpc与websocket"
+    blue   "   2. gRPC和httpupgrade支持通过CDN，关于两者的区别，详见：https://github.com/kirin10000/Xray-script#关于grpc与httpupgrade"
     echo
     local choice=""
     while [[ ! "$choice" =~ ^(0|[1-9][0-9]*)$ ]] || ((choice>7))
@@ -1761,7 +1761,7 @@ readProtocolConfig()
         [ "$choice" -eq 1 ] && protocol_2=2
     fi
     if [ $protocol_3 -eq 1 ]; then
-        tyblue "-------------- 请选择使用WebSocket传输的代理协议 --------------"
+        tyblue "-------------- 请选择使用httpupgrade传输的代理协议 --------------"
         tyblue " 1. VMess"
         tyblue " 2. VLESS"
         echo
@@ -2827,7 +2827,7 @@ EOF
 cat >> "$nginx_config"<<EOF
     location = $path {
         proxy_redirect off;
-        proxy_pass http://unix:/run/xray/ws.sock;
+        proxy_pass http://unix:/run/xray/httpupgrade.sock;
         proxy_http_version 1.1;
         proxy_set_header Upgrade \$http_upgrade;
         proxy_set_header Connection "upgrade";
@@ -2969,7 +2969,7 @@ EOF
 cat >> "$xray_config" << EOF
         },
         {
-            "listen": "/run/xray/ws.sock",
+            "listen": "/run/xray/httpupgrade.sock",
             "protocol": "$protocol_str",
             "settings": {
                 "clients": [
@@ -2986,8 +2986,8 @@ EOF
 cat >> "$xray_config" <<EOF
             },
             "streamSettings": {
-                "network": "ws",
-                "wsSettings": {
+                "network": "httpupgrade",
+                "httpupgradeSettings": {
                     "path": "$path"
                 }
             }
@@ -3275,11 +3275,11 @@ print_config_info()
     if [ $protocol_3 -ne 0 ]; then
         echo
         if [ $protocol_3 -eq 1 ]; then
-            tyblue "------------- VLESS-WebSocket-TLS (有CDN则走CDN，否则直连) -------------"
+            tyblue "------------- VLESS-httpupgrade-TLS (有CDN则走CDN，否则直连) -------------"
             tyblue " protocol(传输协议)    ：\\033[33mvless"
             purple "  (V2RayN选择\"添加[VLESS]服务器\";V2RayNG选择\"手动输入[VLESS]\")"
         else
-            tyblue "------------- VMess-WebSocket-TLS (有CDN则走CDN，否则直连) -------------"
+            tyblue "------------- VMess-httpupgrade-TLS (有CDN则走CDN，否则直连) -------------"
             tyblue " protocol(传输协议)    ：\\033[33mvmess"
             purple "  (V2RayN选择\"添加[VMess]服务器\";V2RayNG选择\"手动输入[Vmess]\")"
         fi
@@ -3299,8 +3299,8 @@ print_config_info()
             purple "  (Qv2ray:安全选项;Shadowrocket:算法)"
         fi
         tyblue " ---Transport/StreamSettings(底层传输方式/流设置)---"
-        tyblue "  network(传输方式)             ：\\033[33mws"
-        purple "   (Shadowrocket传输方式选websocket)"
+        tyblue "  network(传输方式)             ：\\033[33mhttpupgrade"
+        purple "   (Shadowrocket传输方式选httpupgrade)"
         tyblue "  path(路径)                    ：\\033[33m${path}?ed=2048"
         tyblue "  Host                          ：\\033[33m空"
         purple "   (V2RayN(G):伪装域名;Qv2ray:协议设置-请求头)"
@@ -3312,7 +3312,7 @@ print_config_info()
         purple "   (Qv2ray:TLS设置-允许不安全的证书(不打勾);Shadowrocket:允许不安全(关闭))"
         tyblue "  fingerprint                   ：\\033[33m空\\033[32m(推荐)\\033[36m/\\033[33mchrome\\033[36m/\\033[33mfirefox\\033[36m/\\033[33msafari"
         purple "                                           (此选项决定是否伪造浏览器指纹，空代表不伪造)"
-        tyblue "  alpn                          ：此参数不生效，可随意设置 \\033[35m(Websocket模式下alpn将被固定为\"http/1.1\")"
+        tyblue "  alpn                          ：此参数不生效，可随意设置 \\033[35m(httpupgrade模式下alpn将被固定为\"http/1.1\")"
         tyblue " ------------------------其他-----------------------"
         tyblue "  Mux(多路复用)                 ：建议关闭"
         purple "   (V2RayN:设置页面-开启Mux多路复用)"
@@ -4149,7 +4149,7 @@ change_uid()
     tyblue "-------------请输入你要修改的id-------------"
     tyblue " 1. TCP的id"
     tyblue " 2. gRPC的id"
-    tyblue " 3. WebSocket的id"
+    tyblue " 3. httpupgrade的id"
     echo
     while [[ ! "$flag" =~ ^([1-9][0-9]*)$ ]] || ((flag>3))
     do
@@ -4213,11 +4213,11 @@ change_grpc_serviceName()
     green "更换完成！"
     print_config_info
 }
-change_ws_path()
+change_httpupgrade_path()
 {
     config_check
     if [ $protocol_3 -eq 0 ]; then
-        yellow "没有使用WebSocket协议！"
+        yellow "没有使用httpupgrade协议！"
         return 0
     fi
     tyblue "您现在的path是：$path"
@@ -4397,7 +4397,7 @@ start_menu()
     tyblue "  21. 修改VLESS/VMess协议id(用户ID/UUID)"
     tyblue "  22. 重新生成密钥对(修改REALITY协议publicKey)"
     tyblue "  23. 修改gRPC协议serviceName"
-    tyblue "  24. 修改WebSocket协议path(路径)"
+    tyblue "  24. 修改httpupgrade协议path(路径)"
     echo
     tyblue " ----------------其它----------------"
     tyblue "  25. 精简系统"
@@ -4516,7 +4516,7 @@ start_menu()
             change_grpc_serviceName
             ;;
         23)
-            change_ws_path
+            change_httpupgrade_path
             ;;
         24)
             reset_reality_key
