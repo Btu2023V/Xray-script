@@ -3710,10 +3710,6 @@ config_check()
         red "尚未安装Xray-REALITY+Web，请先安装"
         exit 0
     fi
-    if [ -z "$reality_private_key" ]; then
-        yellow "当前配置不自洽，请重新安装"
-        exit 0
-    fi
 }
 
 full_install_php()
