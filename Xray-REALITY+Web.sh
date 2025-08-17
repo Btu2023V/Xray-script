@@ -17,7 +17,7 @@ unset nproc
 
 
 # 安装配置（nginx、openssl、PHP、cloudreve、xray的安装版本、位置等信息）
-nginx_version="nginx-1.28.0"
+nginx_version="nginx-1.26.2"
 openssl_version="openssl-openssl-3.5.0"
 nginx_prefix="/usr/local/nginx"
 nginx_config="${nginx_prefix}/conf.d/xray.conf"
