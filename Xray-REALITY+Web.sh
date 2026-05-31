@@ -17,13 +17,13 @@ unset nproc
 
 
 # 安装配置（nginx、openssl、PHP、cloudreve、xray的安装版本、位置等信息）
-nginx_version="nginx-1.30.0"
+nginx_version="nginx-1.30.2"
 openssl_version="openssl-openssl-4.0.0"
 nginx_prefix="/usr/local/nginx"
 nginx_config="${nginx_prefix}/conf.d/xray.conf"
 nginx_service="/etc/systemd/system/nginx.service"
 
-php_version="php-8.2.8"
+php_version="php-8.5.6"
 # 此处(php_prefix)请使用绝对路径(安装imagick时有影响)
 php_prefix="/usr/local/php"
 php_service="/etc/systemd/system/php-fpm.service"
