@@ -3490,10 +3490,6 @@ install_update_xray_reality_web()
             done
             systemctl daemon-reload
         fi
-        #rm -rf "${nginx_prefix}/conf.d"
-        #rm -rf "${nginx_prefix}/certs"
-        rm -rf "${nginx_prefix}/html/issue_certs"
-        rm -rf "${nginx_prefix}/conf/issue_certs.conf"
         cp "${nginx_prefix}/conf/nginx.conf.default" "${nginx_prefix}/conf/nginx.conf"
         nginx_is_installed=0
         is_installed=0
